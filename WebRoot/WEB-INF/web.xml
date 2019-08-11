@@ -1,0 +1,135 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0"
+  metadata-complete="false">
+ 	<absolute-ordering/>
+	<display-name></display-name>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>ServletIndex</servlet-name>
+		<servlet-class>service.myservlet.ServletIndex</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Transition</servlet-name>
+		<servlet-class>service.myservlet.Transition</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Upload</servlet-name>
+		<servlet-class>service.myservlet.Upload</servlet-class>
+	</servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdminTransition</servlet-name>
+    <servlet-class>service.myservlet.AdminTransition</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Drop</servlet-name>
+    <servlet-class>service.myservlet.Drop</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HotSort</servlet-name>
+    <servlet-class>service.myservlet.HotSort</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ClickNumber</servlet-name>
+    <servlet-class>service.myservlet.ClickNumber</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>TimeSort</servlet-name>
+    <servlet-class>service.myservlet.TimeSort</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DropSession</servlet-name>
+    <servlet-class>service.myservlet.DropSession</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetAllData</servlet-name>
+    <servlet-class>service.myservlet.GetAllData</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>IndexServlet</servlet-name>
+    <servlet-class>service.myservlet.IndexServlet</servlet-class>
+  </servlet>
+
+
+
+
+<!-- 	<servlet-mapping>
+		<servlet-name>ServletIndex</servlet-name>
+		<url-pattern>/ServletIndex</url-pattern>
+	</servlet-mapping> -->
+	<servlet-mapping>
+		<servlet-name>Transition</servlet-name>
+		<url-pattern>/graduateWork/Transition</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Upload</servlet-name>
+		<url-pattern>/Upload</url-pattern>
+	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminTransition</servlet-name>
+    <url-pattern>/graduateWork/admin/AdminTransition</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Drop</servlet-name>
+    <url-pattern>/Drop</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HotSort</servlet-name>
+    <url-pattern>/HotSort</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ClickNumber</servlet-name>
+    <url-pattern>/ClickNumber</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TimeSort</servlet-name>
+    <url-pattern>/TimeSort</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DropSession</servlet-name>
+    <url-pattern>/graduateWork/admin/DropSession</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetAllData</servlet-name>
+    <url-pattern>/graduateWork/admin/GetAllData</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>IndexServlet</servlet-name>
+    <url-pattern>/IndexServlet</url-pattern>
+  </servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<filter>
+		<display-name>FilterOne</display-name>
+		<filter-name>FilterOne</filter-name>
+		<filter-class>com.filter.FilterOne</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FilterOne</filter-name>
+		<url-pattern>/graduateWork/admin/login_main.html</url-pattern>
+	</filter-mapping>
+</web-app>

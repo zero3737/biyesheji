@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<!-- <script type="text/javascript" src="js/jquery.js"></script> -->
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
+.content-a-upload {
+    position: relative;
+    padding:  4px 10px;
+    height: 60px;
+    width: 200px;
+    font: 400 16px/60px "宋体";
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    background:#337ab7;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    overflow: hidden;
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 15px;
+    line-height: 52px;
+}
+.content-a-upload input {
+    position: absolute;
+    font-size: 100px;
+    height: 77px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.content-a-upload:hover {
+    color: white;
+    background: #286090;
+    border-color: #ccc;
+    text-decoration: none
+}
+</style>
+<script language="javascript">
+$(function(){	
+	//导航切换
+	$(".imglist li").click(function(){
+		$(".imglist li.selected").removeClass("selected")
+		$(this).addClass("selected");
+	})	
+})	
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".click").click(function(){
+  $(".tip").fadeIn(200);
+  });
+  
+  $(".tiptop a").click(function(){
+  $(".tip").fadeOut(200);
+});
+
+  $(".sure").click(function(){
+  $(".tip").fadeOut(100);
+});
+
+  $(".cancel").click(function(){
+  $(".tip").fadeOut(100);
+});
+
+});
+
+</script>
+</head>
+
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">管理信息</a></li>
+    <li><a href="#">植物信息表</a></li>
+    </ul>
+    </div>
+    
+    <div class="rightinfo">
+    
+  
+    
+    
+    <table class="imgtable">
+    
+    <thead>
+    <tr>
+    <th width="100px;">植物图片</th>
+    <th>植物名称</th>
+    <th>所属季节</th>
+    <th>内容</th>
+    <th>点击量</th>
+    <th>修改和删除</th>
+    </tr>
+    </thead>
+    
+    <tbody id="tbody">
+    
+    </tbody>
+    
+    </table>
+    
+    
+    
+    
+    
+   
+    <div class="pagin">
+    	<div class="message">共<i class="blue"></i>条记录，当前显示第&nbsp;<i class="blue">&nbsp;</i>页</div>
+        <ul class="paginList">
+
+        </ul>
+    </div>
+    
+    
+ 
+    
+    
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					修改植物信息
+				</h4> 
+			</div>
+			<div class="modal-body">
+                <form action="/biyesheji/Upload" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="changeId" />           
+                植物名称 <input type="text" id="plantname" placeholder='请输入植物名称' class="form-control" style="margin-bottom: 10px;" name="biaoti"><br/>
+                植物所属季节</br> <label id="seasonlabel" ><input name="jijie" type="radio" value="春天" />春天</label> 
+                            <label id="seasonlabel" ><input name="jijie" type="radio" value="夏天"/>夏天</label> 
+                            <label id="seasonlabel" ><input name="jijie" type="radio" value="秋天"/>秋天 </label> 
+                            <label id="seasonlabel" ><input name="jijie" type="radio" value="冬天"/>冬天</label> <br/></br>
+                植物内容 
+                <textarea type="text" id="modal_Content" class="form-control" style="margin-bottom: 10px;" name="neirong"></textarea><br/>
+                 
+<a class="content-a-upload">
+                <input type="file" name="file"  multiple name=""  accept="image/jpg, image/png" style="margin-bottom:10px;"> 修改图片
+   </a>            
+                <div class="modal-footer" id="modal_footer">
+                <button type="button" class="btn btn-default" id="btn_default" data-dismiss="modal">关闭</button>
+                <input type="submit" class="btn btn-primary" id="btn_primary" value="提交更改" />
+                </div>
+                </form><br/>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+
+    
+<script type="text/javascript">
+	$('.imgtable tbody tr:odd').addClass('odd');
+
+    var http = new XMLHttpRequest();
+    var array_json; 
+    var len = 0;
+    http.onreadystatechange=()=>{   //lambda表达式
+       if (http.readyState==4 && http.status==200)
+        {
+
+            var array = http.responseText;
+             array_json = JSON.parse(array);
+             console.log(array_json.length);
+            for(var i =0;i<10;i++){
+              var innerHTML =   "<tr><td class='imgtd'><img width=80px; height=60px; src='"+array_json[i].image+"' /></td><td id='nameId'><p name='biaoti'>"+array_json[i].biaoti+"</p><p>发布时间："+array_json[i].date+"</p></td><td id='seasonId'><p>"+array_json[i].jijie+"</p></td><td><div id='manageDiv'>"+array_json[i].neirong+"</div></td><td id='pointattack'>"+array_json[i].hot+"</td><td id='deloradd'><ul class='toolbar'>\
+        <li data-toggle='modal' data-target='#myModal' class='deloradd_li' onclick=change('"+i+"')  ><img src='images/t02.png' class='chaimg' />修改</li>\
+        <li class='deloradd_li' class='deloradd_li' onclick=Delete('"+array_json[i].id+"')><img src='images/t03.png' class='chaimg' />删除</li>\
+        </ul></td></tr>";
+                 var tbody = document.getElementsByTagName("tbody");//渲染层
+                 tbody[0].innerHTML= tbody[0].innerHTML+innerHTML;
+                 //渲染弹窗input
+                 //var a = document.getElementsByName("biaoti");
+                 //document.getElementById("plantname").value= a[i].innerHTML;
+          
+
+      }
+         
+       	var page_dom = document.getElementsByClassName("paginList")[0];
+        //index 1  page 10
+        page_dom.innerHTML += "<li class='paginItem'><a onclick=branchpageupdate('back')><span class='pagepre'></span></a></li>";
+        
+        if(array_json.length%10){
+                 len = (array_json.length/10) +1; 
+        }else{      
+                len = array_json.length/10;
+        }
+        var count = document.getElementsByClassName("blue")[0];
+        var count_index = document.getElementsByClassName("blue")[1];
+        count.innerHTML = array_json.length;
+        count_index.innerHTML = 1;
+        for(i=1;i<=len;i++){
+            page_dom.innerHTML+="<li class='paginItem' ><a onclick='branchpage("+i+")'>"+i+"</a></li>";
+        }
+        page_dom.innerHTML += "<li class='paginItem'><a  onclick=branchpageupdate('next')><span class='pagenxt'></span></a></li>";
+        }
+  
+    }
+
+    http.open("GET","/biyesheji/graduateWork/admin/GetAllData",true);
+
+    http.send();
+	var index_page = 1; var index_before = 0;
+    function branchpage(index){
+        index_page = index;
+        var count_index = document.getElementsByClassName("blue")[1];
+        count_index.innerHTML = index;
+        document.getElementsByTagName("tbody")[0].innerHTML="";
+        document.getElementsByClassName("paginList")[0].children[index_before].className="paginItem";
+        document.getElementsByClassName("paginList")[0].children[index].className="paginItem current";
+        index_before=index;
+         for(var i = index_page*10-10;i< index_page*10  ;i++){
+              var innerHTML="<tr><td class='imgtd'><img width=80px; height=60px; src='"+array_json[i].image+"' /></td><td id='nameId'>"+array_json[i].biaoti+"<p>发布时间："+array_json[i].date+"</p></td><td id='seasonId'><p>"+array_json[i].jijie+"</p></td><td><div id='manageDiv'>"+array_json[i].neirong+"</div></td><td id='pointattack'>"+array_json[i].hot+"</td><td id='deloradd'><ul class='toolbar'>\
+        <li data-toggle='modal' data-target='#myModal' class='deloradd_li' onclick=change('"+i+"') ><img src='images/t02.png' class='chaimg' />修改</li>\
+        <li class='deloradd_li' onclick=Delete('"+array_json[i].id+"')><img src='images/t03.png' class='chaimg'/>删除</li>\
+        </ul></td></tr>";
+                 var tbody = document.getElementsByTagName("tbody");//渲染层
+                 tbody[0].innerHTML= tbody[0].innerHTML+innerHTML;
+      }
+
+      
+
+    }
+    function change(number){
+             //渲染弹窗input
+        document.getElementById("plantname").value= array_json[number].biaoti;
+        document.getElementById("modal_Content").value=array_json[number].neirong;
+        //这里渲染春天  夏天  秋天   冬天 
+        //document.getElementsByName("jijie")[0].checked  = false
+        if(array_json[number].jijie=="春天"){
+            document.getElementsByName("jijie")[0].checked  = true;
+        }
+        else if(array_json[number].jijie=="夏天"){
+  document.getElementsByName("jijie")[1].checked  = true;
+        }
+         else if(array_json[number].jijie=="秋天"){
+                  document.getElementsByName("jijie")[2].checked  = true;
+        }else{
+                  document.getElementsByName("jijie")[3].checked  = true;
+        } 
+        var changeId=document.getElementById("changeId");
+        changeId.value=array_json[number].id;
+    }
+    function branchpageupdate(value)
+    {
+        if(index_page>=1 && index_page<=parseInt(len) ){
+	        if(value=="back"){
+	        	if(index_page!=1)
+	        		branchpage(--index_page);
+	        }else{
+	        	if(index_page != parseInt(len))
+	        		branchpage(++index_page);
+	        }
+        } 
+    }
+	</script>
+	<script>
+	function Delete(id) 
+	{
+	var se=confirm("确定删除吗？");
+	if(se==true){
+	
+	  var xmlhttp;
+	  xmlhttp=new XMLHttpRequest();
+	  xmlhttp.open("POST","/biyesheji/Drop",false);
+	  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	  xmlhttp.send("id="+id);
+	  location.reload();
+	  }
+	 
+	}
+	
+	</script>
+</body>
+</html>
